@@ -68,15 +68,15 @@ allprojects {
             // jetbrainsRuntime()
         }
 
-        implementation(platform("com.microsoft.azure:azure-toolkit-libs:0.49.0-SNAPSHOT"))
-        implementation(platform("com.microsoft.azure:azure-toolkit-ide-libs:0.49.0-SNAPSHOT"))
+        implementation(platform("com.microsoft.azure:azure-toolkit-libs:0.49.0"))
+        implementation(platform("com.microsoft.azure:azure-toolkit-ide-libs:0.49.0"))
         implementation(platform("com.microsoft.hdinsight:azure-toolkit-ide-hdinsight-libs:0.1.1"))
 
         compileOnly("org.projectlombok:lombok:1.18.24")
         compileOnly("org.jetbrains:annotations:24.0.0")
         annotationProcessor("org.projectlombok:lombok:1.18.24")
-        implementation("com.microsoft.azure:azure-toolkit-common-lib:0.49.0-SNAPSHOT")
-        aspect("com.microsoft.azure:azure-toolkit-common-lib:0.49.0-SNAPSHOT")
+        implementation("com.microsoft.azure:azure-toolkit-common-lib:0.49.0")
+        aspect("com.microsoft.azure:azure-toolkit-common-lib:0.49.0")
     }
 
     configurations {
@@ -208,6 +208,7 @@ dependencies {
     implementation(project(":azure-intellij-plugin-sparkoncosmos"))
     implementation(project(":azure-intellij-plugin-hdinsight-base"))
     implementation(project(":azure-intellij-plugin-integration-services"))
+    implementation(project(":azure-intellij-plugin-cloud-shell"))
     implementation("commons-io:commons-io")
     implementation("org.apache.commons:commons-lang3")
     implementation("com.microsoft.azure:azure-toolkit-common-lib")
@@ -286,7 +287,7 @@ tasks {
     // refers https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-testing-extension.html#intellijPlatformTesting
     val testIde by intellijPlatformTesting.runIde.registering {
         type = IntelliJPlatformType.IntellijIdeaCommunity
-        version = "2024.2"
+        version = properties("platformVersion").get()
     }
 
     // Configure UI tests plugin
